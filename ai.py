@@ -9,7 +9,7 @@ def evaluate_score(board, player):
 
     # Center columns provide more advantage
     center_count = np.count_nonzero(board[:, 3] == player)
-    score += center_count * 25
+    score += center_count * 30
 
     # Horizontal check
     for col in range(4):
@@ -49,17 +49,17 @@ def evaluate_adjacents(adjacent_places, player):
 
     # Reward player's potential winning positions
     if player_pieces == 4:
-        score += 1000
+        score += 10000
     elif player_pieces == 3 and empty_pieces == 1:
-        score += 100
+        score += 500
     elif player_pieces == 2 and empty_pieces == 2:
-        score += 10
+        score += 50
 
     # Penalize opponent's threatening positions
     if opponent_pieces == 3 and empty_pieces == 1:
-        score -= 200
-    elif opponent_pieces == 2 and empty_pieces == 2:
-        score -= 15
+        score -= 400
+    if opponent_pieces == 2 and empty_pieces == 2:
+        score -= 50
 
     return score
 
@@ -68,7 +68,7 @@ def copy_board(board_obj, col, player):
     new_board = Board()
     # Copy the numpy array to avoid mutating the original
     new_board.import_board(board_obj.board.copy())
-    new_board.make_movement(col, player)
+    new_board.make_move(col, player)
     return new_board
 
 

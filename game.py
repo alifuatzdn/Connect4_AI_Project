@@ -116,9 +116,9 @@ def play_game(depth):
                     posx = event.pos[0]
                     col = int(math.floor(posx / SQUARE_SIZE))
 
-                    # Check the validity of movement and update game control
-                    if game_board.valid_movement(col):
-                        game_board.make_movement(col, player)
+                    # Check the validity of move and update game control
+                    if game_board.valid_move(col):
+                        game_board.make_move(col, player)
                         draw_table(game_board.board)
                         player += 1
                         break
@@ -127,9 +127,9 @@ def play_game(depth):
             # Select the optimal move for the opponent (AI)
             col, minimax_score = alpha_beta_minmax(game_board, depth, -math.inf, math.inf, True)
 
-            if not game_board.is_terminal_board() and game_board.valid_movement(col):
+            if not game_board.is_terminal_board() and game_board.valid_move(col):
                 pygame.time.wait(1000)
-                game_board.make_movement(col, player)
+                game_board.make_move(col, player)
                 draw_table(game_board.board)
                 player -= 1
 
@@ -167,4 +167,4 @@ def game(difficulty):
     pygame.quit()
 
 
-game(4)
+game(2)

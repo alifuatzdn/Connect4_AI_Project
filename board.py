@@ -15,14 +15,14 @@ class Board:
         self.board = board
 
     # Check if a column has space for a new piece
-    def valid_movement(self, col):
+    def valid_move(self, col):
         if self.board[5, col] != 0:
             return False
         return True
 
     # Drop a piece into the column
-    def make_movement(self, col, player):
-        if self.valid_movement(col):
+    def make_move(self, col, player):
+        if self.valid_move(col):
             for i in range(6):
                 if self.board[i, col] == 0:
                     self.board[i, col] = player
@@ -33,7 +33,7 @@ class Board:
         available_locations = []
 
         for i in range(7):
-            if self.valid_movement(i):
+            if self.valid_move(i):
                 available_locations.append(i)
 
         return available_locations
